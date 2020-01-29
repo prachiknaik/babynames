@@ -18,6 +18,7 @@ babynames %>%
   filter(name == "Prachi") %>% 
   ggplot(aes(year, n)) + geom_col()
 
+
 # restrict to just names that are top 1000 in the last year
 
 topnames <- babynames %>% 
@@ -35,7 +36,7 @@ top_1000 <- babynames %>%
   slice (1:1000)
 
 # use new top_1000 dataset to filter orig babynames dataset
-smallerdata <- babynames[babynames$name %in% top_1000$name, ]
+smallerdata <- babynames[babynames$name %in% topnames$name, ]
 
 #how preceptor did it
 babynames %>% 
@@ -43,8 +44,9 @@ babynames %>%
 
 # the history of popularity of these 1000 names over time
 smallerdata %>% 
-  filter(name == "Mary") %>% 
+  filter(name == "Mary", sex == "F") %>%  #need to filter by sex to eliminate male entries
   ggplot(aes(year, n)) + geom_line()
+
 
 
 ```
